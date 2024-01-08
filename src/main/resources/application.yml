@@ -1,0 +1,32 @@
+debug: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  level:
+    com.fastcampus.projectboard: debug
+    org.springframwork.web.servlet: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+spring:
+  datasource:
+    url: jdbc:mariadb://193.122.127.164:3306/example?useUnicode=true&characterEncoding=utf8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: example
+    password: example12
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+      hibernate.default_batch_fetch_size: 100
+  h2:
+    console:
+      enabled: false
+  sql:
+    init:
+      mode: always
