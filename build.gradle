@@ -36,8 +36,48 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// queryDSL 설정
+	// implementation "com.querydsl:querydsl-jpa" 해당 디펜던시를 아래 코드로 수정 후
+	// java.lang.ClassNotFoundException: javax.persistence.NoResultException << 에러 해결
+	implementation "com.querydsl:querydsl-jpa:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
+	implementation "com.querydsl:querydsl-core"
+	implementation "com.querydsl:querydsl-collections"
+	// spring Boot 2.x 버전에서는 querydsl apt 버전 뒤에 jpa 를 사용했지만
+	// 3.x 버전부터는 jakarta 를 사용한다.
+	// annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jpa"
+	annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
+	annotationProcessor "jakarta.annotation:jakarta.annotation-api"		// java.lang.NoClassDefFoundError {javax.annotation.Generated} 대응 코드
+	annotationProcessor "jakarta.persistence:jakarta.persistence-api"	// java.lang.NoClassDefFoundError {javax.annotation.Entity} 대응 코드
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+/*
+gradle build를 하면서 gradle이 스캔했던 영역과
+인텔리제이가 스캔하고자 하는 빌드 클래스 파일들이 있는 영역들을 한 번 더 스캔하면서
+중복 스캔이 일어난다.
+첫 스캔 때 QClass의 위치를 확인하고 불러왔는데 똑같은 클래스를 또 불러오려고 하다가
+충돌이 발생해서 중복 문제가 발생한다.
+이러한 중복 문제를 해결하기 위해서 QClass 의 위치를 강제로 지정한다.
+경로 지정 시 build default dir 만 아니면 된다.
+ */
+// Querydsl 설정부
+def generated = 'src/main/generated'
+
+// Querydsl QClass 파일 생성 위치를 지정
+tasks.withType(JavaCompile) {
+	options.getGeneratedSourceOutputDirectory().set(file(generated))
+}
+
+// java source set 에 Querydsl QClass 위치 추가
+sourceSets {
+	main.java.srcDirs += { generated }
+}
+
+// gradle clean 시에 QClass 디렉토리 삭제
+clean {
+	delete file(generated)
 }

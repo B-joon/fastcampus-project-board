@@ -1,5 +1,6 @@
 package com.fastcampus.projectboard.controller;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ WebMvcTest 는 슬라이스 테스트여서 컨트롤러 외의 Bean 들을 로�
 //@WebMvcTest
 // webEnvironment의 다양한 옵션이 존재하지만 MOCK를 사용해야 원하는 내용을 불러온다.
 // default 값이 MOCK이므로 따로 코드를 작성하지 않는다.
+@Disabled("Spring Data REST 통합 테스트는 불필요하므로 제외시킴")
 @DisplayName("Data REST - API 테스트")
 @Transactional
 @AutoConfigureMockMvc
