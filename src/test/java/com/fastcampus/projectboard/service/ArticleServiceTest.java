@@ -165,6 +165,15 @@ class ArticleServiceTest {
         then(articleRepository).should().deleteById(articleId);
     }
 
+    /*
+    여기 밑으로 있는 코드는
+    테스트용 데이터를 셋팅
+    이러한 코드를 fixture 라고 한다. 테스트 코드 내내 반복적으로 활용될 가능성이 큰 코드
+    보통의 경우 fixture를 작성한 파일이나 클래스를 별도로 두고 추출해서 사용하는 패턴이 많지만
+    여기서는 일단 이렇게 작성한다.
+
+    테스트 코드의 부피를 줄이고 반복을 피하기 위함
+     */
     private UserAccount createUserAccount() {
         return UserAccount.of(
                 "uno",

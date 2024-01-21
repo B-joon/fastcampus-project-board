@@ -18,6 +18,11 @@ public interface ArticleCommentRepository extends
         QuerydslPredicateExecutor<ArticleComment>,
         QuerydslBinderCustomizer<QArticleComment> {
 
+    /*
+     게시글 아이디를 통해서 그 게시글 아이디에 해당하는 댓글 리스트를 뽑아온다.
+     언더바를 사용하게 되면 해당 객체 안에 들어가서 아티클의 아이디를 조회하게 된다.
+     연관관계를 맺고 있을 때 이러한 방식으로 사용한다.
+     */
     List<ArticleComment> findByArticle_Id(Long articleId);
 
     @Override
