@@ -56,14 +56,14 @@ class ArticleServiceTest {
         SearchType searchType = SearchType.TITLE;
         String searchKeyword = "title";
         Pageable pageable = Pageable.ofSize(20);
-        given(articleRepository.findByTitle(searchKeyword, pageable)).willReturn(Page.empty());
+        given(articleRepository.findByTitleContaining(searchKeyword, pageable)).willReturn(Page.empty());
 
         // When
         Page<ArticleDto> articles = sut.searchArticles(searchType, searchKeyword, pageable);
 
         // Then
         assertThat(articles).isEmpty();
-        then(articleRepository).should().findByTitle(searchKeyword, pageable);
+        then(articleRepository).should().findByTitleContaining(searchKeyword, pageable);
     }
 
     // 아래 태스트 방식은 온전한 유닛 테스트, 일종의 solitary 테스트
@@ -124,6 +124,7 @@ class ArticleServiceTest {
         // Given
         Article article = createArticle();
         ArticleDto dto = createArticleDto("새 타이틀", "새 내용", "#springboot");
+        // ReferenceById() 는 일단 그 엔티티를 조회하는 쿼리를 무조건 날린다.
         given(articleRepository.getReferenceById(dto.id())).willReturn(article);
 
         // When
@@ -176,10 +177,10 @@ class ArticleServiceTest {
      */
     private UserAccount createUserAccount() {
         return UserAccount.of(
-                "uno",
+                "bong",
                 "password",
                 "uno@email.com",
-                "Uno",
+                "Bong",
                 null
         );
     }
@@ -204,23 +205,23 @@ class ArticleServiceTest {
                 content,
                 hashtag,
                 LocalDateTime.now(),
-                "Uno",
+                "Bong",
                 LocalDateTime.now(),
-                "Uno");
+                "Bong");
     }
 
     private UserAccountDto createUserAccountDto() {
         return UserAccountDto.of(
                 1L,
-                "uno",
+                "bong",
                 "password",
                 "uno@mail.com",
-                "Uno",
+                "Bong",
                 "This is memo",
                 LocalDateTime.now(),
-                "uno",
+                "bong",
                 LocalDateTime.now(),
-                "uno"
+                "bong"
         );
     }
 
