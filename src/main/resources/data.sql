@@ -3,7 +3,7 @@
 insert into user_account (user_id, user_password, nickname, email, memo, created_at, created_by, modified_at,modified_by) values
 ('bong', 'qwer1234', 'Bong', 'bong@mail.com', 'I am Bong.', now(), 'bong', now(), 'bong');
 insert into user_account (user_id, user_password, nickname, email, memo, created_at, created_by, modified_at,modified_by) values
-    ('bong2', 'qwer1234', 'Bong2', 'bong@mail.com', 'I am Bong2.', now(), 'bong2', now(), 'bong2');
+    ('bong2', 'qwer1234', 'Bong2', 'bong12@mail.com', 'I am Bong2.', now(), 'bong2', now(), 'bong2');
 
 -- 123 게시글
 insert into article (user_account_id, title, content, hashtag, created_by, modified_by, created_at, modified_at)
