@@ -10,7 +10,7 @@
                   th:each="searchType : ${searchTypes}"
                   th:value="${searchType.name}"
                   th:text="${searchType.description}"
-                  th:selected="${searchType != null && (param.searchType.toString == searchType.name)}"/>
+                  th:selected="${param.searchType != null && (param.searchType.toString == searchType.name)}"/>
         </attr>
         <attr sel="#search-value" th:value="${param.searchValue}"/>
         <attr sel="#article-table">
