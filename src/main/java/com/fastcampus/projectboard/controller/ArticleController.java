@@ -79,7 +79,7 @@ public class ArticleController {
     public String postNewArticle(ArticleRequest articleRequest) {
         // TODO: 인증 정보를 넣어줘야 한다.
         articleService.saveArticle(articleRequest.toDto(UserAccountDto.of(
-                "uno", "asdf1234", "uno@mail.com", "Uno", "memo"
+                "bong", "qwer1234", "bong@mail.com", "Bong", "memo"
         )));
 
         return "redirect:/articles";
@@ -95,11 +95,15 @@ public class ArticleController {
         return "articles/form";
     }
 
+    /*
+    수정과 삭제할 때 @PostMapping 를 사용하는 이유는
+    Form 태그가 get, post 두 개밖에 다루지 못하기 때문이다.
+     */
     @PostMapping ("/{articleId}/form")
     public String updateArticle(@PathVariable Long articleId, ArticleRequest articleRequest) {
         // TODO: 인증 정보를 넣어줘야 한다.
         articleService.updateArticle(articleId, articleRequest.toDto(UserAccountDto.of(
-                "uno", "asdf1234", "uno@mail.com", "Uno", "memo"
+                "bong", "qwer1234", "bong@mail.com", "Bong", "memo"
         )));
 
         return "redirect:/articles/" + articleId;
