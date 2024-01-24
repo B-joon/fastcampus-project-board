@@ -282,7 +282,7 @@ class ArticleServiceTest {
         return UserAccount.of(
                 "bong",
                 "password",
-                "uno@email.com",
+                "bong@email.com",
                 "Bong",
                 null
         );
@@ -321,7 +321,7 @@ class ArticleServiceTest {
         return UserAccountDto.of(
                 "bong",
                 "password",
-                "uno@mail.com",
+                "bong@mail.com",
                 "Bong",
                 "This is memo",
                 LocalDateTime.now(),
