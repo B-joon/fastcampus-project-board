@@ -41,6 +41,7 @@ dependencies {
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
 
 	// queryDSL 설정
 	// implementation "com.querydsl:querydsl-jpa" 해당 디펜던시를 아래 코드로 수정 후
