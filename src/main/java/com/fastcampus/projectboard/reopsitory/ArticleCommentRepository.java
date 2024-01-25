@@ -24,6 +24,7 @@ public interface ArticleCommentRepository extends
      연관관계를 맺고 있을 때 이러한 방식으로 사용한다.
      */
     List<ArticleComment> findByArticle_Id(Long articleId);
+    void deleteByIdAndUserAccount_UserId(Long articleCommentId, String userId);
 
     @Override
     default void customize(QuerydslBindings bindings, QArticleComment root) {
