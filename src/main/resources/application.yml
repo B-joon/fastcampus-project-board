@@ -8,11 +8,11 @@ management:
 logging:
   level:
     com.fastcampus.projectboard: debug
-    org.springframwork.web.servlet: debug
+    org.springframework.web.servlet: debug
     org.hibernate.type.descriptor.sql.BasicBinder: trace
 spring:
   datasource:
-    url: jdbc:mariadb://193.122.127.164:3306/example?useUnicode=true&characterEncoding=utf8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    url: jdbc:mariadb://localhost:3306/example?useUnicode=true&characterEncoding=utf8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: example
     password: example12
     driver-class-name: org.mariadb.jdbc.Driver
@@ -34,3 +34,5 @@ spring:
       detection-strategy: annotated
   thymeleaf3:
     decoupled-logic: true
+  mvc:
+    log-request-details: true
